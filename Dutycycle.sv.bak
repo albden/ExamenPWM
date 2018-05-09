@@ -1,0 +1,28 @@
+module Dutycycle
+#(
+	parameter WORD_LENGTH = 8
+)
+(
+	input [WORD_LENGTH-1:0] Data_In,
+	
+	output [WORD_LENGTH-1:0] Data_Out
+);
+
+logic [WORD_LENGTH-1:0]Out;
+always_comb begin 
+	case(Data_In)
+		8b'10000000: Out=8;
+		8b'01000000: Out=7;
+		8b'00100000: Out=6;
+		8b'00010000: Out=5;
+		8b'00001000: Out=4;
+		8b'00000100: Out=3;
+		8b'00000010: Out=2;
+		8b'00000001: Out=1;
+		default: Out = 0;
+
+end
+
+assign Data_Out = Out;
+
+endmodule

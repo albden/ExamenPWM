@@ -1,0 +1,44 @@
+module FrequencyDivider
+#(
+	parameter COUNTER_BITS = 32
+)
+(
+input Clk,
+input Rst,
+input En,
+input [COUNTER_BITS-1:0] InternalClock,
+input [COUNTER_BITS-1:0] Freq,
+output logic Counting
+);
+
+logic [COUNTER_BITS-1:0] Max_Count;
+//Reloj 50 Mhz
+
+logic [COUNTER_BITS-1 : 0] Counting_reg = 0;
+logic flag = 0;
+
+always_ff@(posedge Clk or negedge Rst) begin: ThisIsACounter
+	if (Rst == 1'b0)begin
+		Counting_reg <= {COUNTER_BITS{1'b0}};
+		Max_Count <= (iInternalClock/iFreq);
+	end
+	else 
+	begin	
+		if(En == 1'b1)
+		begin
+			if(Counting_reg == Max_Count)
+			begin
+				flag <= ~flag;
+				Counting_reg <= {COUNTER_BITS{1'b0}};
+			end
+			else
+				Counting_reg <= Counting_reg + 1'b1;
+		end
+		else
+		Counting_reg <= Counting_reg;
+	end	
+end: ThisIsACounter
+
+assign Counting = flag;
+
+endmodule
