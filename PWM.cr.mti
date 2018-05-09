@@ -1,0 +1,22 @@
+{C:/Users/ALBERTO/Documents/ProyectosFPGAs/Nueva carpeta/Examen2/Dutycycle.sv} {1 {vlog -work work -sv -stats=none {C:/Users/ALBERTO/Documents/ProyectosFPGAs/Nueva carpeta/Examen2/Dutycycle.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Dutycycle
+
+Top level modules:
+	Dutycycle
+
+} {} {}} {C:/Users/ALBERTO/Documents/ProyectosFPGAs/Nueva carpeta/Examen2/PWM.sv} {1 {vlog -work work -sv -stats=none {C:/Users/ALBERTO/Documents/ProyectosFPGAs/Nueva carpeta/Examen2/PWM.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PWM
+
+Top level modules:
+	PWM
+
+} {} {}} {C:/Users/ALBERTO/Documents/ProyectosFPGAs/Nueva carpeta/Examen2/PWM_TB.sv} {1 {vlog -work work -sv -stats=none {C:/Users/ALBERTO/Documents/ProyectosFPGAs/Nueva carpeta/Examen2/PWM_TB.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PWM_TB
+
+Top level modules:
+	PWM_TB
+
+} {} {}}

@@ -1,5 +1,6 @@
 module PWM
 #(
+	parameter FREQ_LENGTH = 2,
 	parameter WORD_LENGTH = 8
 )
 
@@ -9,14 +10,23 @@ module PWM
 	input reset,
 	input start,
 	input [WORD_LENGTH-1:0] dutyCycle,
-	input [1:0] frequency,
+	input [FREQ_LENGTH-1:0] frequency,
 	
 
 	output pwm_output
 
 );
 
-wire [WORD_LENGTH-1:0] porcentaje;
+wire [3:0] porcentaje;
+
+Dutycycle
+Cycle
+(
+	.Data_In(dutyCycle),
+	.Data_Out(porcentaje)
+
+);
+
 
 FrequencyDivider
 #(
@@ -27,20 +37,13 @@ MainFrequency
 	//inputs
 	.Clk(clk),
 	.Rst(reset),
-	.En(1),
+	.En(start),
 	.dutyCycle(porcentaje),
 	.Frequency(frequency),
 	//outputs
 	.Counting(pwm_output)
 );
 
-Dutycycle
-Cycle
-(
-	.Data_In(dutyCycle),
-	.Data_Out(porcentaje)
-
-);
 
 
 

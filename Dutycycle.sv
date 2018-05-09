@@ -5,10 +5,10 @@ module Dutycycle
 (
 	input [WORD_LENGTH-1:0] Data_In,
 	
-	output [WORD_LENGTH-1:0] Data_Out
+	output [3:0] Data_Out
 );
 
-logic [WORD_LENGTH-1:0]Out;
+logic [3:0]Out;
 always_comb begin 
 	case(Data_In)
 		8'b10000000: Out=8;

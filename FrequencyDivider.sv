@@ -8,8 +8,8 @@ module FrequencyDivider
 input Clk,
 input Rst,
 input En,
-input [7:0]dutyCycle,
-input [COUNTER_BITS-1:0] Frequency,
+input [3:0]dutyCycle,
+input [1:0] Frequency,
 output logic Counting
 );
 
@@ -19,10 +19,12 @@ logic [COUNTER_BITS-1:0] Max_Count;
 logic [COUNTER_BITS-1 : 0] Counting_reg = 0;
 logic flag = 0;
 
+assign Max_Count = (InternalClock/(Frequency*Freq));
+
 always_ff@(posedge Clk or negedge Rst) begin: ThisIsACounter
 	if (Rst == 1'b0)begin
 		Counting_reg <= {COUNTER_BITS{1'b0}};
-		Max_Count <= (InternalClock/(Frequency*Freq));
+		
 	end
 	else 
 	begin	
@@ -32,6 +34,9 @@ always_ff@(posedge Clk or negedge Rst) begin: ThisIsACounter
 				begin 
 					Counting_reg <= {COUNTER_BITS{1'b0}};
 				end
+			else
+				Counting_reg <= Counting_reg + 1'b1;
+				
 			if(Counting_reg < ((Max_Count/8)*dutyCycle))
 				begin
 					//flag <= ~flag;
@@ -42,11 +47,12 @@ always_ff@(posedge Clk or negedge Rst) begin: ThisIsACounter
 				begin
 					flag <= 0;
 				end
-			else
-				Counting_reg <= Counting_reg + 1'b1;
+
 		end
-		else
-		Counting_reg <= Counting_reg;
+		else begin
+			Counting_reg <= Counting_reg;
+			
+		end
 	end	
 end: ThisIsACounter
 
