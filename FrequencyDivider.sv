@@ -19,7 +19,7 @@ logic [COUNTER_BITS-1:0] Max_Count;
 logic [COUNTER_BITS-1 : 0] Counting_reg = 0;
 logic flag = 0;
 
-assign Max_Count = (InternalClock/(Frequency*Freq));
+assign Max_Count = (InternalClock/((Frequency*Freq)+Freq));
 
 always_ff@(posedge Clk or negedge Rst) begin: ThisIsACounter
 	if (Rst == 1'b0)begin
@@ -36,6 +36,9 @@ always_ff@(posedge Clk or negedge Rst) begin: ThisIsACounter
 				end
 			else
 				Counting_reg <= Counting_reg + 1'b1;
+				
+				
+				
 				
 			if(Counting_reg < ((Max_Count/8)*dutyCycle))
 				begin

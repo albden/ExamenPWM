@@ -42,7 +42,7 @@ end
 initial begin // enable
 	#0 start = 0;
 	#100 start = 1;
-	 dutyCycle = 8'b00100000;
+	 dutyCycle = 8'b00001000;
 	 frequency = 2'b01;
 
 end
